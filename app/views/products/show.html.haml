@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @product.title
+%p
+  %b Description:
+  = @product.description
+%p
+  %b Category:
+  = @product.category
+%p
+  %b Image:
+  = image_tag @product.image.thumb.url
+%p
+  %b Price:
+  = @product.price
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path |
+=link_to "Add to cart", :action => :add_to_cart, :id => @product

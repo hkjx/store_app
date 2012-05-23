@@ -1,0 +1,7 @@
+#cart
+  You have #{@cart.items.size} items in your shopping cart.
+  -@cart.items.each do |item|
+    %p
+      =item.title
+      =item.quantity.to_s
+      =item.price    
