@@ -2,6 +2,7 @@ class Product
   include Mongoid::Document
   
   CATEGORIES = ["PC Games", "Tabletop Games", "Books"]
+
   field :title, :type => String
   field :description, :type => String
   field :category, :type => String
@@ -9,4 +10,6 @@ class Product
   field :price, :type => Integer
 
   mount_uploader :image, ProductImageUploader
+
+  has_many :comments, :as => :commentable
 end

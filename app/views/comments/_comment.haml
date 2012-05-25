@@ -1,0 +1,10 @@
+%li
+  %p
+    -if comment.user
+      = comment.user.email
+    -else
+      anonimous
+  %p
+    = comment.body
+  = link_to 'Edit', edit_product_comment_path([comment, comment.commentable])
+

@@ -15,8 +15,13 @@
 %p
   %b Price:
   = @product.price
-
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path |
-=link_to "Add to cart", :action => :add_to_cart, :id => @product
+= link_to 'Back', products_path
+-if can? :update, @product
+  |
+  = link_to 'Edit', edit_product_path(@product)
+-if can? :add_to_cart, @product
+  |
+  =link_to "Add to cart", :action => :add_to_cart, :id => @product
+  =link_to "Add comment", new_product_comment_path(@product)
+%ul
+  =render :partial => "comments/comment", :collection => @product.comments

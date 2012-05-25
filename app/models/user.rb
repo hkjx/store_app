@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  ROLES = %w{admin user}
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -9,6 +10,7 @@ class User
   ## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""
+  field :role, :type => String
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -24,6 +26,7 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+  has_many :comments
   ## Confirmable
   # field :confirmation_token,   :type => String
   # field :confirmed_at,         :type => Time
@@ -37,4 +40,7 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  def role?(role)
+    self.role == role.to_s
+  end
 end

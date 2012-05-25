@@ -11,7 +11,7 @@
         =link_to "Sign in", new_user_session_path |
         =link_to "Sign up", new_user_registration_path
       -else
-        =current_user.email |
+        =render_cell :user, :display, :user => current_user
         =render_cell :cart, :display, :cart => session[:cart] if session[:cart]
         =link_to "Sign out", destroy_user_session_path, :method => :delete
     = yield

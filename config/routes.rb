@@ -1,7 +1,13 @@
 StoreApp::Application.routes.draw do
+
   devise_for :users
+
   match 'products/add_to_cart'
-  resources :products
+
+  resources :products do
+    resources :comments
+  end
+
   root :to => 'products#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
